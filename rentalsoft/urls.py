@@ -1,4 +1,4 @@
-"""product_booking URL Configuration
+"""rentalsoft URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -16,10 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from .views import home_view
-
 urlpatterns = [
-    path('', home_view),
     path('admin/', admin.site.urls),
     path('api/products/', include('products.api.urls')),
 ]
