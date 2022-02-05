@@ -9,6 +9,6 @@ class Product(models.Model):
     needing_repair = models.BooleanField(default=True)
     durability = models.IntegerField()
     max_durability = models.IntegerField()
-    mileage = models.CharField(max_length=30)
+    mileage = models.IntegerField(null=True)
     price = models.IntegerField()
     minimum_rent_period = models.IntegerField()
