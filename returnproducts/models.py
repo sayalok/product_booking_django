@@ -3,8 +3,8 @@ from products.models import Product
 
 # Create your models here.
 class ReturnProducts(models.Model):
-    product_id = models.ForeignKey('products.Product', on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     from_date = models.DateField()
     to_date = models.DateField()
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    milage = models.IntegerField(null=False)
+    milage = models.IntegerField(null=True)
