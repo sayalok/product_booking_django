@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/products/', include('products.api.urls')),
     path('api/booking/', include('booking.api.urls')),
+    path('api/returnproducts/', include('returnproducts.api.urls')),
 ]
