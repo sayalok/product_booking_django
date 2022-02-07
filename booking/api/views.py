@@ -4,6 +4,7 @@ from products.models import Product
 from .serializers import BookingSerializer
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
+from django.db import transaction
 
 
 from rest_framework.response import Response
@@ -20,14 +21,17 @@ class BookingListView(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         booking_data = request.data
         try:
-            new_booking = Booking.objects.create(
-                from_date = booking_data["from_date"], 
-                to_date = booking_data["to_date"], 
-                total = booking_data['total'],
-                product_id = booking_data['product_id']
-            )
-            new_booking.save()
-            return {'status': True}
+            with transaction.atomic():
+                new_booking = Booking.objects.create(
+                    from_date = booking_data["from_date"], 
+                    to_date = booking_data["to_date"], 
+                    total = booking_data['total'],
+                    product_id = booking_data['product_id']
+                )
+                new_booking.save()
+                Product.objects.filter(pk=booking_data['product_id']).update(availability=0)
+                return {'status': True}
+            
         except IntegrityError as e:
             return {
                 'status': False,
