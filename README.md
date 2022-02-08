@@ -6,6 +6,7 @@ Project Setup/ Install
 <li> create virtuat environment `python -m venv .` </li>
 <li> activate virtual environment `Scripts\activate`</li>
 <li> pip install -r requirements.txt</li>
+<li> copy .env.example to .env</li>
 
 the strcture should be look like this
 <pre>
