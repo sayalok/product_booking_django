@@ -6,7 +6,6 @@ from django.db import IntegrityError
 from django.core.exceptions import ValidationError
 from django.db import transaction
 
-
 from rest_framework.response import Response
 
 class BookingListView(generics.ListCreateAPIView):
@@ -16,7 +15,7 @@ class BookingListView(generics.ListCreateAPIView):
     def list(self, request):
         queryset = self.get_queryset()
         serializer = BookingSerializer(queryset, many=True)
-        return Response({"status":'Success',"data":serializer.data})
+        return Response({"status": 'Success', "data": serializer.data})
 
     def create(self, request, *args, **kwargs):
         booking_data = request.data
